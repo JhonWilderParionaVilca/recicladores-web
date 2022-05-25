@@ -1,43 +1,30 @@
-import { useState } from 'react';
-import logo from './logo.svg';
-import './App.css';
-
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>Hello Vite + React!</p>
-        <p>
-          <button type="button" onClick={() => setCount((count) => count + 1)}>
-            count is: {count}
+    <div className="layout min-h-screen w-screen justify-center">
+      <header className="header m-auto flex max-w-screen-lg flex-row items-center justify-between">
+        <h1 className=" text-xl font-bold text-primary-500">Recolectores</h1>
+        <nav className="flex flex-row gap-3">
+          <a className="btn btn--secondary" href="/register">
+            Registrar un Punto
+          </a>
+          <a className="btn btn--primary" href="/login">
+            Login
+          </a>
+          <button type="button" className="btn btn--tertiary">
+            Salir
           </button>
-        </p>
-        <p>
-          Edit <code>App.tsx</code> and save to test HMR updates.
-        </p>
-        <p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-          {' | '}
-          <a
-            className="App-link"
-            href="https://vitejs.dev/guide/features.html"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Vite Docs
-          </a>
-        </p>
+        </nav>
       </header>
+      <main className="main">
+        <h2 className="text-center text-2xl">Hola Mundo</h2>
+      </main>
+      <footer className="footer m-auto max-w-screen-lg">
+        <p className="text-center text-sm font-bold">
+          Realizado con &hearts; por{' '}
+          <a href="https://github.com/wilderPariona">wilderPariona</a>. Todos
+          los derechos reservados &copy; 2022
+        </p>
+      </footer>
     </div>
   );
 }

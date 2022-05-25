@@ -28,11 +28,17 @@ int-plugin-jsx-a11y@^6.4.1 eslint-plugin-react-hooks@^4 @typescript-eslint/parse
 
 This starter is only the beginning. [Learn more](https://web.dev/progressive-web-apps/) about how to take this codebase and improve the install experience, create an app-like user experience, make your [offline experience even better](https://web.dev/reliable/). Then, [make it powerful](https://chromeos.dev/en/web/powerful-pwas) by adding new web APIs to supercharge your user experience. You can even [build a checklist of capabilities](https://chromeos.dev/en/web/powerful-pwas#your-pwa-checklist) you want to add, or see checklists for different kinds of apps you may want to build.
 
-
 ## Fixes
 
 -- Husky
 
 ```sh
 $ chmod +x .husky/*
+```
+
+## Tailwindcss
+
+```sh
+$ yarn add -DE tailwindcss postcss autoprefixer prettier-plugin-tailwindcss
+$ npx tailwind init -p
 ```

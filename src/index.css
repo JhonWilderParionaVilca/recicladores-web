@@ -1,13 +1,101 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-size: 62.5%;
+    font-family: 'Lato', sans-serif;
+    font-weight: 400;
+    line-height: 1.7;
+  }
+  p {
+    @apply text-base text-grey-500;
+  }
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+@layer components {
+  .layout {
+    display: grid;
+    grid-gap: 1rem;
+    grid-template-rows: 6rem 1fr 3.5rem;
+    grid-template-colums: 1fr;
+    grid-template-areas:
+      'header'
+      'main'
+      'footer';
+    @apply bg-background;
+  }
+  .header {
+    grid-area: header;
+    @apply w-screen;
+  }
+  .main {
+    grid-area: main;
+    @apply w-screen;
+  }
+  .footer {
+    grid-area: footer;
+    @apply w-screen;
+  }
+
+  .btn,
+  .btn:link,
+  .btn:visited {
+    display: inline-block;
+    font-size: 1.6rem;
+    text-decoration: none;
+    text-decoration: none;
+    padding: 1rem 3rem;
+    border-radius: 10rem;
+    transition: all 0.5s;
+    position: relative;
+    border: none;
+    cursor: pointer;
+  }
+  .btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
+  }
+  .btn:hover::after {
+    transform: scaleX(1.4) scaleY(1.6);
+    opacity: 0;
+  }
+  .btn:active,
+  .btn:focus {
+    transform: translateY(-1px);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
+  }
+
+  .btn::after {
+    content: '';
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    transition: all 0.4s;
+    border-radius: 10rem;
+  }
+
+  .btn--primary {
+    @apply bg-primary-500 text-white;
+  }
+  .btn--primary::after {
+    @apply bg-primary-500;
+  }
+  .btn--secondary {
+    @apply bg-secondary-500 text-white;
+  }
+  .btn--secondary::after {
+    @apply bg-secondary-500;
+  }
+  .btn--tertiary {
+    @apply bg-tertiary-500 text-white;
+  }
+  .btn--tertiary::after {
+    @apply bg-tertiary-500;
+  }
 }
