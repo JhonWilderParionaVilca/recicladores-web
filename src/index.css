@@ -81,10 +81,10 @@
   }
 
   .btn--primary {
-    @apply bg-primary-500 text-white;
+    @apply bg-primary-700 text-white;
   }
   .btn--primary::after {
-    @apply bg-primary-500;
+    @apply bg-primary-700;
   }
   .btn--secondary {
     @apply bg-secondary-500 text-white;
@@ -97,5 +97,25 @@
   }
   .btn--tertiary::after {
     @apply bg-tertiary-500;
+  }
+
+  .btn-text:link,
+  .btn-text:visited {
+    display: inline-block;
+    font-size: 1.6rem;
+    text-decoration: none;
+    text-decoration: none;
+    padding: 3px;
+    transition: all 0.2s;
+    @apply border-b border-solid border-tertiary-500 text-tertiary-500;
+  }
+  .btn-text:hover {
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.15);
+    transform: translateY(-1px);
+  }
+
+  .btn-text:active {
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    transform: translateY(0);
   }
 }

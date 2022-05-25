@@ -6,7 +6,7 @@ module.exports = {
       sm: '1.2rem',
       base: '1.6rem',
       lg: '2rem',
-      xl: '3.5rem',
+      xl: '3rem',
       '2xl': '6rem',
     },
     screens: {
