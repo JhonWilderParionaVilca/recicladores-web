@@ -1,7 +1,8 @@
 import { yupResolver } from '@hookform/resolvers/yup';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
 import { InferType } from 'yup';
+import { MapPointRegister } from '../components/point/MapPointRegister';
 import { InputController } from '../components/share/InputController';
 import {
   createPointSchema,
@@ -9,6 +10,8 @@ import {
 } from '../schemas/createPointSchema';
 
 export const Point = () => {
+  const [latitude, setLatitude] = useState<number | null>(null);
+  const [longitude, setLongitude] = useState<number | null>(null);
   const {
     control,
     handleSubmit,
@@ -25,52 +28,57 @@ export const Point = () => {
     reset();
   };
 
+  const changePointSelected = (latitude: number, longitude: number) => {
+    setLatitude(latitude);
+    setLongitude(longitude);
+  };
+
   return (
     <>
-      <div className="m-auto flex h-full max-w-3xl items-center justify-center">
-        <form
-          onSubmit={handleSubmit(onSubmit)}
-          className="bg-white-500 rounded-2xl bg-primary-100 p-8 shadow-2xl"
-        >
-          <legend className="mb-10 text-center text-xl font-bold text-secondary-500">
-            Registra un Punto de Recolección
-          </legend>
-          <InputController
-            control={control}
-            nameInput="name"
-            typeField="name"
-            labelInput="Nombre de la Organización *"
-          />
-          <InputController
-            control={control}
-            nameInput="email"
-            typeField="email"
-            labelInput="Correo *"
-          />
-          <InputController
-            control={control}
-            nameInput="phone"
-            typeField="phone"
-            labelInput="Número celular *"
-          />
+      <form onSubmit={handleSubmit(onSubmit)} className="form">
+        <h2 className="form__title">Punto de Recolección</h2>
 
-          <button
-            data-testid="submit_button"
-            type="submit"
-            className="btn btn--secondary mt-10 w-full"
-            disabled={isSubmitting}
-          >
-            Iniciar Sesión
-          </button>
-          <hr className="my-6 border-grey-200" />
-          <p className="text-center">
-            ¿No tienes una cuenta?{' '}
-            <Link to="/register" className="btn-text">
-              Regístrate
-            </Link>
-          </p>
-        </form>
-      </div>
+        <InputController
+          control={control}
+          nameInput="name"
+          typeField="name"
+          labelInput="Nombre de la Organización *"
+        />
+        <InputController
+          control={control}
+          nameInput="email"
+          typeField="email"
+          labelInput="Correo de la organización *"
+        />
+        <InputController
+          control={control}
+          nameInput="phone"
+          typeField="phone"
+          labelInput="Whatsaap de la organización *"
+        />
+
+        <fieldset className="mb-10">
+          <legend className="text-base font-bold text-grey-500">
+            <h2>Dirección</h2>
+            <span className="text-sm">Marque una posición en el Mapa</span>
+            <span className="block text-xs">
+              {latitude} {longitude}
+            </span>
+          </legend>
+          <MapPointRegister changePointSelected={changePointSelected} />
+        </fieldset>
+
+        <button
+          data-testid="submit_button"
+          type="submit"
+          className="btn btn--tertiary  w-full"
+          disabled={isSubmitting}
+        >
+          Registrar Punto
+        </button>
+
+        <input type="hidden" name="location" />
+      </form>
     </>
   );
 };

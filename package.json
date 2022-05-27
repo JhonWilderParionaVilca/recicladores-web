@@ -11,9 +11,11 @@
   },
   "dependencies": {
     "@hookform/resolvers": "2.8.10",
+    "leaflet": "1.8.0",
     "react": "18.1.0",
     "react-dom": "18.1.0",
     "react-hook-form": "7.31.2",
+    "react-leaflet": "4.0.0",
     "react-router-dom": "6.3.0",
     "workbox-recipes": "6.5.3",
     "workbox-routing": "6.5.3",
@@ -21,6 +23,7 @@
     "yup": "0.32.11"
   },
   "devDependencies": {
+    "@types/leaflet": "1.7.10",
     "@types/react": "18.0.9",
     "@types/react-dom": "18.0.4",
     "@typescript-eslint/eslint-plugin": "5.3.0",

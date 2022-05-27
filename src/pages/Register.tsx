@@ -27,55 +27,52 @@ export const Register = () => {
 
   return (
     <>
-      <div className="m-auto flex h-full max-w-3xl items-center justify-center">
-        <form
-          onSubmit={handleSubmit(onSubmit)}
-          className="bg-white-500 rounded-2xl bg-primary-100 p-8 shadow-2xl"
+      <form onSubmit={handleSubmit(onSubmit)} className="form">
+        <h2 className="form__title">Regístrate</h2>
+
+        <InputController
+          control={control}
+          nameInput="name"
+          typeField="name"
+          labelInput="Nombre *"
+        />
+        <InputController
+          control={control}
+          nameInput="email"
+          typeField="email"
+          labelInput="Correo *"
+        />
+        <InputController
+          control={control}
+          nameInput="password"
+          typeField="password"
+          labelInput="Contraseña *"
+        />
+        <InputController
+          control={control}
+          nameInput="passwordConfirmation"
+          typeField="passwordConfirmation"
+          labelInput="Repita la Contraseña *"
+        />
+
+        <button
+          data-testid="submit_button"
+          type="submit"
+          className="btn btn--tertiary  w-full"
+          disabled={isSubmitting}
         >
-          <legend className="mb-10 text-center text-xl font-bold text-secondary-500">
-            Regístrate
-          </legend>
-          <InputController
-            control={control}
-            nameInput="name"
-            typeField="name"
-            labelInput="Nombre *"
-          />
-          <InputController
-            control={control}
-            nameInput="email"
-            typeField="email"
-            labelInput="Correo *"
-          />
-          <InputController
-            control={control}
-            nameInput="password"
-            typeField="password"
-            labelInput="Contraseña *"
-          />
-          <InputController
-            control={control}
-            nameInput="passwordConfirmation"
-            typeField="passwordConfirmation"
-            labelInput="Repita la Contraseña *"
-          />
-          <button
-            data-testid="submit_button"
-            type="submit"
-            className="btn btn--secondary mt-10 w-full"
-            disabled={isSubmitting}
-          >
-            Iniciar Sesión
-          </button>
-          <hr className="my-6 border-grey-200" />
-          <p className="text-center">
-            ¿Ya tienes una cuenta?{' '}
-            <Link to="/login" className="btn-text">
-              Logueate
-            </Link>
-          </p>
-        </form>
-      </div>
+          Iniciar Sesión
+        </button>
+
+        <hr className="border-grey-200 my-10" />
+
+        <p className="text-center">
+          ¿Ya tienes una cuenta?{' '}
+          <Link to="/login" className="btn-text">
+            Logueate
+          </Link>
+        </p>
+      </form>
     </>
   );
 };

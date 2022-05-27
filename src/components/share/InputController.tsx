@@ -27,7 +27,7 @@ export const InputController = ({
       <label
         data-testid={`${name}_input_label`}
         htmlFor={name}
-        className="block text-lg font-bold text-grey-500"
+        className="block text-base font-bold text-grey-500"
       >
         {labelInput}
         <input
@@ -39,7 +39,7 @@ export const InputController = ({
           onChange={onChange}
           value={value}
           data-testid={`${name}_input_field`}
-          className={`h-full w-full rounded-lg border-2 border-grey-600 bg-white  px-3 py-3 text-grey-800 transition duration-500 ${
+          className={`border-grey-600 text-grey-800 h-full w-full rounded-lg border-2  bg-white px-3 py-3 transition duration-500 ${
             error?.message ? ' focus:border-red' : ' focus:border-primary-500'
           } focus:outline-none ${error && 'border-red'}`}
         />

@@ -15,9 +15,15 @@
 }
 
 @layer components {
+  .form {
+    @apply w-10/12  max-w-2xl rounded-2xl bg-white p-10 shadow-sm;
+  }
+  .form__title {
+    @apply mb-10 text-center text-xl font-extrabold text-tertiary-500;
+  }
   .layout {
     @apply grid min-h-screen w-full grid-cols-1 justify-center overflow-hidden bg-gradient-to-b from-tertiary-500 to-primary-500;
-    /* grid-gap: 1rem; */
+    grid-gap: 6rem;
     grid-template-rows: 8rem 1fr 3.5rem;
     grid-template-areas:
       'header'
@@ -27,7 +33,7 @@
 
   @media (max-width: 768px) {
     .layout {
-      grid-template-rows: 12rem 1fr 3.5rem;
+      grid-template-rows: 13rem 1fr 3.5rem;
     }
   }
 
@@ -37,7 +43,7 @@
   }
   .main {
     grid-area: main;
-    @apply w-screen;
+    @apply flex w-screen items-center justify-center;
   }
   .footer {
     grid-area: footer;
@@ -52,7 +58,7 @@
     text-decoration: none;
     text-decoration: none;
     padding: 1rem 3rem;
-    border-radius: 10rem;
+    border-radius: 2rem;
     transition: all 0.5s;
     position: relative;
     border: none;
@@ -82,7 +88,7 @@
     left: 0;
     z-index: -1;
     transition: all 0.4s;
-    border-radius: 10rem;
+    border-radius: 2rem;
   }
 
   .btn--primary {
