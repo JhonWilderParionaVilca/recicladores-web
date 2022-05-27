@@ -16,16 +16,21 @@
 
 @layer components {
   .layout {
-    display: grid;
-    grid-gap: 1rem;
-    grid-template-rows: 6rem 1fr 3.5rem;
-    grid-template-colums: 1fr;
+    @apply grid min-h-screen w-full grid-cols-1 justify-center overflow-hidden bg-background;
+    /* grid-gap: 1rem; */
+    grid-template-rows: 8rem 1fr 3.5rem;
     grid-template-areas:
       'header'
       'main'
       'footer';
-    @apply bg-background;
   }
+
+  @media (max-width: 768px) {
+    .layout {
+      grid-template-rows: 12rem 1fr 3.5rem;
+    }
+  }
+
   .header {
     grid-area: header;
     @apply w-screen;

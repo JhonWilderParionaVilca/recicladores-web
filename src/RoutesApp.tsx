@@ -9,7 +9,7 @@ import { Register } from './pages/Register';
 
 export const RoutesApp = () => (
   <>
-    <div className="layout min-h-screen w-screen justify-center">
+    <div className="layout">
       <Header />
       <main className="main">
         <Routes>
