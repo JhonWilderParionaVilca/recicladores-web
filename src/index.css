@@ -110,6 +110,12 @@
   .btn--tertiary::after {
     @apply bg-tertiary-500;
   }
+  .btn--red {
+    @apply bg-red text-white;
+  }
+  .btn--red::after {
+    @apply bg-red;
+  }
 
   .btn-text:link,
   .btn-text:visited {
