@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { InferType } from 'yup';
 import { MapPointRegister } from '../components/point/MapPointRegister';
+import Dropzone from '../components/share/DropZone';
 import { InputController } from '../components/share/InputController';
 import { items } from '../core/constants/items';
 import {
@@ -14,9 +15,13 @@ export const Point = () => {
   const [latitude, setLatitude] = useState<number | undefined>(undefined);
   const [longitude, setLongitude] = useState<number | undefined>(undefined);
   const [errorMap, setErrorMap] = useState(false);
-  const [errorItems, setErrorItems] = useState(false);
 
   const [selectedItems, setSelectedItems] = useState<number[]>([]);
+  const [errorItems, setErrorItems] = useState(false);
+
+  const [selectedFile, setSelectedFile] = useState<File>();
+  const [errorFile, setErrorFile] = useState(false);
+
   const {
     control,
     handleSubmit,
@@ -35,6 +40,7 @@ export const Point = () => {
     console.log(formValues);
     reset();
     setSelectedItems([]);
+    setSelectedFile(undefined);
   };
 
   const changePointSelected = (latitude: number, longitude: number) => {
@@ -42,6 +48,14 @@ export const Point = () => {
     setLongitude(longitude);
   };
 
+  const handlerSelectedItems = (id: number) => {
+    const alreadySelected = selectedItems.findIndex((item) => item === id);
+    if (alreadySelected >= 0) {
+      const filteredItems = selectedItems.filter((item) => item !== id);
+      return setSelectedItems(filteredItems);
+    }
+    return setSelectedItems((prevSelectedItems) => [...prevSelectedItems, id]);
+  };
   useEffect(() => {
     if (!latitude || !longitude) {
       setErrorMap(true);
@@ -58,20 +72,31 @@ export const Point = () => {
     }
   }, [selectedItems]);
 
-  const handlerSelectedItems = (id: number) => {
-    console.table(selectedItems);
-    const alreadySelected = selectedItems.findIndex((item) => item === id);
-    if (alreadySelected >= 0) {
-      const filteredItems = selectedItems.filter((item) => item !== id);
-      return setSelectedItems(filteredItems);
+  useEffect(() => {
+    if (!selectedFile) {
+      setErrorFile(true);
+    } else {
+      setErrorFile(false);
     }
-    return setSelectedItems((prevSelectedItems) => [...prevSelectedItems, id]);
-  };
+  }, [selectedFile]);
 
   return (
     <>
       <form onSubmit={handleSubmit(onSubmit)} className="form">
         <h2 className="form__title">Punto de Recolección</h2>
+
+        <fieldset className="mb-10">
+          <legend className="text-base font-bold text-grey-500">
+            <h2>Seleccione una Imagen de la Organización *</h2>
+          </legend>
+          <Dropzone
+            onFileUploaded={setSelectedFile}
+            selectedFile={selectedFile}
+          />
+          <p data-testid="map_input_error" className="text-red">
+            {errorFile && 'Seleccione una Imagen'}
+          </p>
+        </fieldset>
 
         <InputController
           control={control}
