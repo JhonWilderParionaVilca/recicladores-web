@@ -6,7 +6,7 @@ export const Header = () => (
       <h1 className=" text-xl font-bold text-primary-500">Recolectores</h1>
     </Link>
     <nav className="flex flex-row gap-3">
-      <Link className="btn btn--secondary" to="/register">
+      <Link className="btn btn--secondary" to="/create">
         Registrar un Punto
       </Link>
       <Link className="btn btn--primary" to="/login">

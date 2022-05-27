@@ -1,3 +1,4 @@
+/* eslint-disable global-require */
 module.exports = {
   content: ['./index.html', './src/**/*.{ts,tsx}'],
   theme: {
