@@ -22,7 +22,7 @@ export const Login = () => {
     reset();
   };
   return (
-    <>
+    <main className="main my-24 ">
       <form onSubmit={handleSubmit(onSubmit)} className="form">
         <h2 className="form__title">INGRESA</h2>
 
@@ -55,6 +55,6 @@ export const Login = () => {
           </Link>
         </p>
       </form>
-    </>
+    </main>
   );
 };

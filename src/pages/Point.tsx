@@ -81,7 +81,7 @@ export const Point = () => {
   }, [selectedFile]);
 
   return (
-    <>
+    <main className="main my-24">
       <form onSubmit={handleSubmit(onSubmit)} className="form">
         <h2 className="form__title">Punto de Recolección</h2>
 
@@ -166,6 +166,6 @@ export const Point = () => {
           Registrar Punto
         </button>
       </form>
-    </>
+    </main>
   );
 };

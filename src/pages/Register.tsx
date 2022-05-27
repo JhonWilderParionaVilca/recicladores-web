@@ -26,7 +26,7 @@ export const Register = () => {
   };
 
   return (
-    <>
+    <main className="main my-24">
       <form onSubmit={handleSubmit(onSubmit)} className="form">
         <h2 className="form__title">Regístrate</h2>
 
@@ -73,6 +73,6 @@ export const Register = () => {
           </Link>
         </p>
       </form>
-    </>
+    </main>
   );
 };

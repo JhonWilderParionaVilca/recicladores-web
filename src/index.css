@@ -16,14 +16,15 @@
 
 @layer components {
   .form {
-    @apply w-10/12  max-w-2xl rounded-2xl bg-white p-10 shadow-sm;
+    @apply w-10/12  max-w-3xl rounded-2xl bg-white p-10 shadow-sm;
   }
   .form__title {
     @apply mb-10 text-center text-xl font-extrabold text-tertiary-500;
   }
   .layout {
-    @apply grid min-h-screen w-full grid-cols-1 justify-center overflow-hidden bg-gradient-to-b from-tertiary-500 to-primary-500;
-    grid-gap: 6rem;
+    @apply grid min-h-screen w-full grid-cols-1 justify-center overflow-hidden
+    bg-primary-700 md:bg-gradient-to-br md:from-primary-700 md:to-tertiary-900;
+    /* grid-gap: 6rem; */
     grid-template-rows: 8rem 1fr 3.5rem;
     grid-template-areas:
       'header'
