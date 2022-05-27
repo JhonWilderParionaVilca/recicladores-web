@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 
 export const Header = () => (
-  <header className="header bg-tertiary-500 shadow-2xl">
+  <header className="header shadow-lg">
     <div className="m-auto flex h-full max-w-screen-lg flex-col items-center justify-center md:flex-row md:justify-between">
       {/* <div className="flex-column m-auto flex h-full max-w-screen-lg items-center justify-between py-10 "> */}
       <Link to="/">

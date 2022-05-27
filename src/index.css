@@ -16,7 +16,7 @@
 
 @layer components {
   .layout {
-    @apply grid min-h-screen w-full grid-cols-1 justify-center overflow-hidden bg-background;
+    @apply grid min-h-screen w-full grid-cols-1 justify-center overflow-hidden bg-gradient-to-b from-tertiary-500 to-primary-500;
     /* grid-gap: 1rem; */
     grid-template-rows: 8rem 1fr 3.5rem;
     grid-template-areas:

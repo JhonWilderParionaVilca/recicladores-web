@@ -43,7 +43,7 @@ module.exports = {
       tertiary: {
         100: '#ddd9fe',
         300: '#9a8efc',
-        500: '#412df9',
+        500: '#5240f5',
         700: '#342896',
         900: '#110d32',
       },
@@ -60,7 +60,7 @@ module.exports = {
       },
       white: '#fff',
       black: '#000',
-      background: '#f7f7f7',
+      background: '#ddb52f',
       red: 'red',
     },
     extend: {},
