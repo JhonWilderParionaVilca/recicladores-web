@@ -3,9 +3,8 @@ import { Link } from 'react-router-dom';
 export const Header = () => (
   <header className="header shadow-lg">
     <div className="m-auto flex h-full max-w-screen-lg flex-col items-center justify-center md:flex-row md:justify-between">
-      {/* <div className="flex-column m-auto flex h-full max-w-screen-lg items-center justify-between py-10 "> */}
       <Link to="/">
-        <h1 className=" text-xl font-bold text-primary-500">Recolectores</h1>
+        <h1 className=" text-xl font-bold text-primary-100">Recolectores</h1>
       </Link>
       <nav className="flex flex-row gap-3">
         <Link className="btn btn--secondary" to="/create">
