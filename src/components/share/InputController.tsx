@@ -39,7 +39,7 @@ export const InputController = ({
           onChange={onChange}
           value={value}
           data-testid={`${name}_input_field`}
-          className={`border-grey-600 text-grey-800 h-full w-full rounded-lg border-2  bg-white px-3 py-3 transition duration-500 ${
+          className={`h-full w-full rounded-lg border-2 border-grey-300 bg-white  px-3 py-3 text-grey-900 transition duration-500 ${
             error?.message ? ' focus:border-red' : ' focus:border-primary-500'
           } focus:outline-none ${error && 'border-red'}`}
         />
