@@ -1,5 +1,5 @@
 import { yupResolver } from '@hookform/resolvers/yup';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { InferType } from 'yup';
 import { MapPointRegister } from '../components/point/MapPointRegister';
@@ -11,8 +11,11 @@ import {
 } from '../schemas/createPointSchema';
 
 export const Point = () => {
-  const [latitude, setLatitude] = useState<number | null>(null);
-  const [longitude, setLongitude] = useState<number | null>(null);
+  const [latitude, setLatitude] = useState<number | undefined>(undefined);
+  const [longitude, setLongitude] = useState<number | undefined>(undefined);
+  const [errorMap, setErrorMap] = useState(false);
+  const [errorItems, setErrorItems] = useState(false);
+
   const [selectedItems, setSelectedItems] = useState<number[]>([]);
   const {
     control,
@@ -26,8 +29,12 @@ export const Point = () => {
   });
 
   const onSubmit = (formValues: InferType<typeof createPointSchema>) => {
+    if (errorItems || errorMap) {
+      return;
+    }
     console.log(formValues);
     reset();
+    setSelectedItems([]);
   };
 
   const changePointSelected = (latitude: number, longitude: number) => {
@@ -35,15 +42,29 @@ export const Point = () => {
     setLongitude(longitude);
   };
 
+  useEffect(() => {
+    if (!latitude || !longitude) {
+      setErrorMap(true);
+    } else {
+      setErrorMap(false);
+    }
+  }, [latitude, longitude]);
+
+  useEffect(() => {
+    if (selectedItems.length === 0) {
+      setErrorItems(true);
+    } else {
+      setErrorItems(false);
+    }
+  }, [selectedItems]);
+
   const handlerSelectedItems = (id: number) => {
     console.table(selectedItems);
     const alreadySelected = selectedItems.findIndex((item) => item === id);
-
     if (alreadySelected >= 0) {
       const filteredItems = selectedItems.filter((item) => item !== id);
       return setSelectedItems(filteredItems);
     }
-
     return setSelectedItems((prevSelectedItems) => [...prevSelectedItems, id]);
   };
 
@@ -80,6 +101,9 @@ export const Point = () => {
             </span>
           </legend>
           <MapPointRegister changePointSelected={changePointSelected} />
+          <p data-testid="map_input_error" className="text-red">
+            {errorMap && 'Seleccione un punto en el mapa'}
+          </p>
         </fieldset>
 
         <fieldset className="mb-10">
@@ -103,6 +127,9 @@ export const Point = () => {
               </li>
             ))}
           </ul>
+          <p data-testid="items_input_error" className="text-red">
+            {errorItems && 'Seleccioe al menos un articulo'}
+          </p>
         </fieldset>
 
         <button
@@ -113,8 +140,6 @@ export const Point = () => {
         >
           Registrar Punto
         </button>
-
-        <input type="hidden" name="location" />
       </form>
     </>
   );
