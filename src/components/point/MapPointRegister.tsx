@@ -32,7 +32,7 @@ export const MapPointRegister = ({
 }: MapPointRegisterProps) => (
   <MapContainer
     className="h-[350px] w-full"
-    center={[-12.046374, -77.042793]}
+    center={[-13.160440793089405, -74.22578947415903]}
     zoom={17}
   >
     <TileLayer

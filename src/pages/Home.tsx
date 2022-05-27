@@ -1,34 +1,23 @@
-import { LatLngExpression } from 'leaflet';
 import { useState } from 'react';
-import { MapContainer, Marker, TileLayer, useMapEvents } from 'react-leaflet';
+import { FilterArticles, MapView } from '../components/home';
+import { insertDeleteStringArray } from '../utilities';
 
-const MyPositionMarker = () => {
-  const [position, setPosition] = useState<LatLngExpression>([0, 0]);
-  const map = useMapEvents({
-    mouseover() {
-      map.locate();
-    },
-    locationfound(e) {
-      setPosition(e.latlng);
-      map.flyTo(e.latlng, map.getZoom());
-    },
-  });
+export const Home = () => {
+  const [selectedItems, setSelectedItems] = useState<string[]>([]);
 
-  return <Marker position={position} />;
-};
+  const hadleSelectedItem = (item: string) => {
+    setSelectedItems((currentSelectedItems) =>
+      insertDeleteStringArray(currentSelectedItems, item)
+    );
+  };
 
-export const Home = () => (
-  <main className="main">
-    <MapContainer
-      className="h-full w-full"
-      center={[-12.046374, -77.042793]}
-      zoom={17}
-    >
-      <TileLayer
-        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+  return (
+    <main className="relative flex flex-col main">
+      <MapView items={selectedItems} />
+      <FilterArticles
+        selectedItems={selectedItems}
+        hadleSelectedItem={hadleSelectedItem}
       />
-      <MyPositionMarker />
-    </MapContainer>
-  </main>
-);
+    </main>
+  );
+};
