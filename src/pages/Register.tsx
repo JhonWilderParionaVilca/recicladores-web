@@ -77,7 +77,7 @@ export const Register = () => {
           className="btn btn--tertiary  w-full"
           disabled={isSubmitting || loading}
         >
-          {loading ? 'Enviando...' : 'Iniciar Sesión'}
+          {loading ? 'Enviando...' : 'Crear Usuario'}
         </button>
 
         <hr className="border-grey-200 my-10" />

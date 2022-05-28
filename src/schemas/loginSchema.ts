@@ -15,3 +15,5 @@ export const initialValueLoginForm = {
   email: '',
   password: '',
 };
+
+export type LoginUser = yup.InferType<typeof loginUserSchema>;

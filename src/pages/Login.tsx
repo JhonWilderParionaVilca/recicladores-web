@@ -1,11 +1,18 @@
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { Link } from 'react-router-dom';
-import { InferType } from 'yup';
-import { initialValueLoginForm, loginUserSchema } from '../schemas/loginSchema';
-import { InputController } from '../components/share/InputController';
+import { Link, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+
+import { initialValueLoginForm, LoginUser, loginUserSchema } from '../schemas';
+import { loginUser } from '../services';
+
+import { useFetch } from '../hooks';
+import { InputController } from '../components/share';
 
 export const Login = () => {
+  const navigate = useNavigate();
+  const { callEndpoint, loading } = useFetch();
+
   const {
     control,
     handleSubmit,
@@ -17,9 +24,12 @@ export const Login = () => {
     mode: 'all',
   });
 
-  const onSubmit = (formValues: InferType<typeof loginUserSchema>) => {
-    console.log(formValues);
+  const onSubmit = async ({ email, password }: LoginUser) => {
+    const response = await callEndpoint(loginUser({ email, password }));
+    console.log(response.data.data);
+    toast.success('Bievenido!!!');
     reset();
+    navigate('/create');
   };
   return (
     <main className="main my-24 ">
@@ -43,10 +53,11 @@ export const Login = () => {
           data-testid="submit_button"
           type="submit"
           className="btn btn--tertiary w-full"
-          disabled={isSubmitting}
+          disabled={isSubmitting || loading}
         >
-          Iniciar Sesión
+          {loading ? 'Enviando...' : 'Iniciar Sesión'}
         </button>
+
         <hr className="my-10 border-grey-100" />
         <p className="text-center">
           ¿No tienes una cuenta?{' '}
