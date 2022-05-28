@@ -1,20 +1,18 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
-import { toast } from 'react-toastify';
 import { Link, useNavigate } from 'react-router-dom';
 import {
   initialRegisterForm,
   registerFormSchema,
   RegisterUser,
 } from '../schemas';
-import { registerUser } from '../services';
 
-import { useFetch } from '../hooks';
+import { useAuth } from '../hooks';
 import { InputController } from '../components/share';
 
 export const Register = () => {
   const navigate = useNavigate();
-  const { callEndpoint, loading } = useFetch();
+  const { loading, register } = useAuth();
 
   const {
     control,
@@ -33,16 +31,18 @@ export const Register = () => {
     password,
     passwordConfirmation,
   }: RegisterUser) => {
-    await callEndpoint(
-      registerUser({ name, email, password, passwordConfirmation })
-    );
-    toast.success('Usuario creado!!');
+    await register({
+      name,
+      email,
+      password,
+      passwordConfirmation,
+    });
     reset();
     navigate('/login');
   };
 
   return (
-    <main className="main my-24">
+    <main className="my-24 main">
       <form onSubmit={handleSubmit(onSubmit)} className="form">
         <h2 className="form__title">Regístrate</h2>
 
@@ -74,13 +74,13 @@ export const Register = () => {
         <button
           data-testid="submit_button"
           type="submit"
-          className="btn btn--tertiary  w-full"
+          className="w-full btn btn--tertiary"
           disabled={isSubmitting || loading}
         >
           {loading ? 'Enviando...' : 'Crear Usuario'}
         </button>
 
-        <hr className="border-grey-200 my-10" />
+        <hr className="my-10 border-grey-200" />
 
         <p className="text-center">
           ¿Ya tienes una cuenta?{' '}

@@ -40,16 +40,14 @@ export const registerUser = (body: RegisterUser) => {
 export const loginUser = (body: LoginUser) => {
   const controller = loadAbort();
   return {
-    call: axios.post<AxiosSuccesResponse<string>>(
-      `${API.BACKEND}/users/login`,
-      body,
-      {
+    call: axios
+      .post<AxiosSuccesResponse<string>>(`${API.BACKEND}/users/login`, body, {
         signal: controller.signal,
         headers: {
           'content-type': 'application/json',
         },
-      }
-    ),
+      })
+      .catch(),
     controller,
   };
 };

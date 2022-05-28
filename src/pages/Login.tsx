@@ -1,17 +1,15 @@
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Link, useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
 
 import { initialValueLoginForm, LoginUser, loginUserSchema } from '../schemas';
-import { loginUser } from '../services';
 
-import { useFetch } from '../hooks';
+import { useAuth } from '../hooks';
 import { InputController } from '../components/share';
 
 export const Login = () => {
+  const { loading, login } = useAuth();
   const navigate = useNavigate();
-  const { callEndpoint, loading } = useFetch();
 
   const {
     control,
@@ -25,14 +23,13 @@ export const Login = () => {
   });
 
   const onSubmit = async ({ email, password }: LoginUser) => {
-    const response = await callEndpoint(loginUser({ email, password }));
-    console.log(response.data.data);
-    toast.success('Bievenido!!!');
+    await login({ email, password });
     reset();
     navigate('/create');
   };
+
   return (
-    <main className="main my-24 ">
+    <main className="my-24 main ">
       <form onSubmit={handleSubmit(onSubmit)} className="form">
         <h2 className="form__title">INGRESA</h2>
 
@@ -52,7 +49,7 @@ export const Login = () => {
         <button
           data-testid="submit_button"
           type="submit"
-          className="btn btn--tertiary w-full"
+          className="w-full btn btn--tertiary"
           disabled={isSubmitting || loading}
         >
           {loading ? 'Enviando...' : 'Iniciar Sesión'}
