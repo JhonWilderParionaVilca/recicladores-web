@@ -78,6 +78,10 @@
     box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
   }
 
+  .btn:disabled {
+    opacity: 0.5;
+  }
+
   .btn::after {
     content: '';
     display: inline-block;

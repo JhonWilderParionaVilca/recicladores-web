@@ -34,3 +34,5 @@ export const initialRegisterForm = {
   password: '',
   passwordConfirmation: '',
 };
+
+export type RegisterUser = yup.InferType<typeof registerFormSchema>;

@@ -10,3 +10,9 @@ export interface AxiosSuccesResponse<T> {
   msg: string;
   status: true;
 }
+
+export interface AxiosErrorResponse {
+  type: string;
+  msg: string;
+  status: true;
+}

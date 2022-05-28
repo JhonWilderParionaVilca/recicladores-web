@@ -1,9 +1,11 @@
 import { AxiosResponse } from 'axios';
+import { toast } from 'react-toastify';
 import { useEffect, useState } from 'react';
 import { AxiosCall } from '../models/axios';
 
 export const useFetch = () => {
   const [loading, setLoading] = useState(false);
+
   let controller: AbortController;
 
   const callEndpoint = async (axiosCall: AxiosCall<any>) => {
@@ -14,6 +16,7 @@ export const useFetch = () => {
       result = await axiosCall.call;
     } catch (err: any) {
       setLoading(false);
+      toast.error(err.response.data.msg);
       throw err;
     }
     setLoading(false);

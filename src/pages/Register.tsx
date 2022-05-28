@@ -1,14 +1,21 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
-import { InferType } from 'yup';
-import { InputController } from '../components/share/InputController';
+import { toast } from 'react-toastify';
+import { Link, useNavigate } from 'react-router-dom';
 import {
   initialRegisterForm,
   registerFormSchema,
-} from '../schemas/registerSchema';
+  RegisterUser,
+} from '../schemas';
+import { registerUser } from '../services';
+
+import { useFetch } from '../hooks';
+import { InputController } from '../components/share';
 
 export const Register = () => {
+  const navigate = useNavigate();
+  const { callEndpoint, loading } = useFetch();
+
   const {
     control,
     handleSubmit,
@@ -20,9 +27,18 @@ export const Register = () => {
     mode: 'all',
   });
 
-  const onSubmit = (formValues: InferType<typeof registerFormSchema>) => {
-    console.log(formValues);
+  const onSubmit = async ({
+    name,
+    email,
+    password,
+    passwordConfirmation,
+  }: RegisterUser) => {
+    await callEndpoint(
+      registerUser({ name, email, password, passwordConfirmation })
+    );
+    toast.success('Usuario creado!!');
     reset();
+    navigate('/login');
   };
 
   return (
@@ -33,7 +49,7 @@ export const Register = () => {
         <InputController
           control={control}
           nameInput="name"
-          typeField="name"
+          typeField="text"
           labelInput="Nombre *"
         />
         <InputController
@@ -51,7 +67,7 @@ export const Register = () => {
         <InputController
           control={control}
           nameInput="passwordConfirmation"
-          typeField="passwordConfirmation"
+          typeField="password"
           labelInput="Repita la Contraseña *"
         />
 
@@ -59,9 +75,9 @@ export const Register = () => {
           data-testid="submit_button"
           type="submit"
           className="btn btn--tertiary  w-full"
-          disabled={isSubmitting}
+          disabled={isSubmitting || loading}
         >
-          Iniciar Sesión
+          {loading ? 'Enviando...' : 'Iniciar Sesión'}
         </button>
 
         <hr className="border-grey-200 my-10" />
