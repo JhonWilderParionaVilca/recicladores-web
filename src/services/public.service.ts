@@ -51,3 +51,19 @@ export const loginUser = (body: LoginUser) => {
     controller,
   };
 };
+
+export const createPoint = (dataForm: any, jwt: string) => {
+  const controller = loadAbort();
+  return {
+    call: axios
+      .post<AxiosSuccesResponse<any>>(`${API.BACKEND}/collectors`, dataForm, {
+        signal: controller.signal,
+        headers: {
+          'content-type': 'application/json',
+          Authorization: jwt,
+        },
+      })
+      .catch(),
+    controller,
+  };
+};
