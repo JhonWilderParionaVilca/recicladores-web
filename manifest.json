@@ -1,9 +1,9 @@
 {
-  "name": "Vite PWA",
-  "short_name": "Vite PWA",
-  "description": "A Vite starter app ready-to-go as a Progressive Web App.",
-  "background_color": "#5a0fc8",
-  "theme_color": "#5a0fc8",
+  "name": "Recicladores App",
+  "short_name": "Recicladores",
+  "description": "Una aplicación para encontrar recicladores a 5km de distancia",
+  "background_color": "#308f50",
+  "theme_color": "#5240f5",
   "display": "standalone",
   "icons": [
     {
