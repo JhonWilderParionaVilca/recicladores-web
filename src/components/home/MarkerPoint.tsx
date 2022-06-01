@@ -1,11 +1,18 @@
 import { Marker, Popup } from 'react-leaflet';
+import {Icon} from "leaflet";
 import type { Point } from '../../models';
+
+const icon = new Icon({
+  iconUrl: "/favicon.svg",
+  iconSize: [25,25]
+})
+
 
 interface MarkerPointProps {
   point: Point;
 }
 export const MarkerPoint = ({ point }: MarkerPointProps) => (
-  <Marker position={[point.latitude, point.longitude]}>
+  <Marker position={[point.latitude, point.longitude]} icon={icon}>
     <Popup>
       <div className="flex flex-col items-end w-full h-full ">
         <img
