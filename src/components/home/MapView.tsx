@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import {Icon} from "leaflet";
 import { MapContainer, TileLayer } from 'react-leaflet';
 import { createPointAdapter } from '../../adapters';
 import { coordinatesAyacucho } from '../../core/constants';
@@ -11,6 +12,11 @@ import { MyPositionMarker } from './MyPositionMarker';
 interface MapViewProps {
   items: string[];
 }
+
+const icon = new Icon({
+  iconUrl: "/favicon.svg",
+  iconSize: [25,25]
+})
 
 export const MapView = ({ items }: MapViewProps) => {
   const { callEndpoint } = useFetch();
@@ -57,7 +63,7 @@ export const MapView = ({ items }: MapViewProps) => {
         />
         <MyPositionMarker changePointSelected={changePointSelected} />
         {points.map((point) => (
-          <MarkerPoint key={point.id} point={point} />
+          <MarkerPoint key={point.id} point={point} icon={icon} />
         ))}
       </MapContainer>
     </>
