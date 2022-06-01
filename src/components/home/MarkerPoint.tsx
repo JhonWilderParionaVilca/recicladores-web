@@ -2,8 +2,10 @@ import { Marker, Popup } from 'react-leaflet';
 import {Icon} from "leaflet";
 import type { Point } from '../../models';
 
+import img from "../../favicon.svg";
+
 const icon = new Icon({
-  iconUrl: "/favicon.svg",
+  iconUrl: img,
   iconSize: [25,25]
 })
 
